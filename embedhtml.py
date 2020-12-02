@@ -30,8 +30,6 @@ def embed(htmlfile, yamlfile):
   # Read files
   html_path = Path(htmlfile)
   html_string = html_path.read_text()
-  #with open(htmlfile) as f:
-  #  html_string = f.read()
   with open(yamlfile) as f:
     yaml_contents = yaml.full_load(f)
 
@@ -74,7 +72,6 @@ def read_yaml_element(node, filepath, yaml_path):
   # isinstance is better than try..except here as the only iterables we want are lists and dicts
   if isinstance(node, dict):
     for (k,childnode) in node.items():
-      #print('key',k)
       if 'html' in k.lower():
         extract_html(childnode, filepath, yaml_path+[k])
         html_found = True
@@ -83,12 +80,10 @@ def read_yaml_element(node, filepath, yaml_path):
           html_found = True
   elif isinstance(node, list):
     for (i,childnode) in enumerate(node):
-      #print('item',i)
       if read_yaml_element(childnode, filepath, yaml_path+[i]):
         html_found = True
   else:
     pass
-    #print('value',str(node))
   return html_found
 
 def extract_html(value, filepath, yaml_path):
@@ -111,9 +106,6 @@ def extract_html(value, filepath, yaml_path):
     raise ValueError(f"Cannot read file {filepath}")
   out_dir = path.parent
   out_prefix = path.stem + '_' + path.suffix[1:]
-  #if path.suffix != '.yaml':
-  #  print('Warning: filename is not .yaml; assuming yaml')
-  #  out_prefix += '_yaml'
   yaml_path_string = '--'.join([str(x) for x in yaml_path])
   out_path = Path(out_dir).joinpath(f"{out_prefix}__node__{yaml_path_string}.html")
   print(f"Writing to {out_path}")
