@@ -2,7 +2,9 @@
 
 Utility to embed/extract HTML content in Anvil YAML files. 
 
-Run `python embedhtml.py --help` for usage.
+Run `pip install .` in this directory to install. A virtualenv is recommended.
+
+Run `embedhtml --help` for usage.
 
 The `extract` command searches the yaml file for key-value pairs where the key contains the string "html" (with any case) and saves the corresponding text value to a file. 
 This will extract, for instance, `['native_deps']['head_html']` from anvil.yaml, or `['container']['properties']['html']` from a component UI template. 
