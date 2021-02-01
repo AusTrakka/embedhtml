@@ -53,7 +53,7 @@ def embed(htmlfile, yamlfile):
 
   # Write out yaml
   with open(yamlfile, 'w') as f:
-    yaml.dump(yaml_contents, f)
+    yaml.dump(yaml_contents, f, sort_keys=False, default_flow_style=None)
 
 
 
