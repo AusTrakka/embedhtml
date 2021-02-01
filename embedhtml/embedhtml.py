@@ -3,6 +3,9 @@ import click
 import yaml
 from pathlib import Path
 import re
+from .version import __version__
+
+@click.version_option(version=__version__, message="%(version)s")
 
 @click.group()
 def cli():

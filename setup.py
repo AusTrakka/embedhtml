@@ -1,15 +1,17 @@
-from setuptools import setup
+from setuptools import setup, find_packages
+from embedhtml.version import __version__ as version
 
 setup(
     name='embedhtml',
-    version='0.1',
-    py_modules=['embedhtml'],
+    version=version,
+    packages=find_packages(),
+    include_package_data=True,
     install_requires=[
         'click',
         'pyyaml'
     ],
     entry_points='''
         [console_scripts]
-        embedhtml=embedhtml:cli
+        embedhtml=embedhtml.embedhtml:cli
     ''',
 )
