@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-from embedhtml import __version__ as version
+from embedhtml.version import __version__ as version
 
 setup(
     name='embedhtml',
